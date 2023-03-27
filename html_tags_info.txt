@@ -1,0 +1,56 @@
+I need to scrape data from a specific site https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html
+This page contains cards with links to individual product description. Page does not load new cards automatically, so when last card is reached we need to go to a new page https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html?PAGE=2, then https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html?PAGE=3 etc.
+
+Links to individual products are stored in these html tags:
+"html body div#contall div#body_container div#body_container_in div#PAGE form#formCritere.nbForm div#Columns2 div#Column div#auctionlist div#storelist a.itemcard"
+"html body div#contall div#body_container div#body_container_in div#PAGE form#formCritere.nbForm div#Columns2 div#Column div#auctionlist div#storelist a.itemcard promo"
+
+But these links may contain only second part of the full link, so I need to make sure that if product link is missing https://www.naturabuy.fr/ it gets inserted in order to get correct, full link to a product page.
+
+From that product page, we want to get the following information and store in CSV format using pandas:
+1) full_product_name, stored in html tags of the product page here:
+"html body div#contall div#body_container div#body_container_in div#PAGE div#Columns div#mainProduct div#productWrapper div#newinfos div h1#title.inbl.vmid"
+
+--- 1.1) manufacturer, stored in html tags of the product page here:
+"html body div#contall div#body_container div#body_container_in div#PAGE div#Columns div#mainProduct div#productWrapper div#blocGallery div#productCriteres div.critere div.criterevalue"
+
+2) item_is_new, stored in html tags of the product page here:
+"html body div#contall div#body_container div#body_container_in div#PAGE div#Columns div#mainProduct div#productWrapper div#newinfos div div.MbidBox div div.horStockEnabled.bold div#availabilityWrapper div#availabilityText span#availabilityCondition"
+
+3) price, stored in html tags of the product page here:
+"html body div#contall div#body_container div#body_container_in div#PAGE div#Columns div#mainProduct div#productWrapper div#newinfos div div.MbidBox div div.bidBox div div.grey div div#bnC1 div#bnPrices div.ma010 div#priceContainer.price"
+
+4) shipping_cost, stored in html tags of the product page here:
+"html body div#contall div#body_container div#body_container_in div#PAGE div#Columns div#mainProduct div#productWrapper div#newinfos div div.MbidBox div div div.buyboxin div div div#shippingsContainer b"
+
+
+
+For testing purposes I want to scrape only first 5 items on page 1 and 5 items on page 2. Add a small delay in order to avoid getting blocked.
+Inlcude fail-safe mechanisms if requested data is missing.
+
+
+
+
+vendor private or retail
+"html body div#contall div#body_container div#body_container_in div#PAGE div#Columns div#mainProduct div#productWrapper div#newinfos div div.MbidBox div div.horStockEnabled.bold div#availabilityWrapper div#isProPart"
+
+website page id
+"html body div#contall div#body_container div#body_container_in div#PAGE div#Columns div#infoscomps div.grey div div"
+
+item brand
+"html body div#contall div#body_container div#body_container_in div#PAGE div#Columns div#Description div div.grey div#criteresWithDesc.criteres h2#669.critereinItem.critere.mandatory b span.critValue"
+
+item description
+"html body div#contall div#body_container div#body_container_in div#PAGE div#Columns div#Description div div#ItemDescription"
+
+
+
+
+<a class="paginationElement activePage" href="https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html" data-page="1">1</a><a class="paginationElement" href="https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html?PAGE=2" data-page="2">2</a><a class="paginationElement" href="https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html?PAGE=3" data-page="3">3</a><a class="paginationElement" href="https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html?PAGE=4" data-page="4">4</a><a class="paginationElement" href="https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html?PAGE=5" data-page="5">5</a><a class="paginationElement" href="https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html?PAGE=6" data-page="6">6</a><a class="paginationElement" href="https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html?PAGE=10" data-page="10">10</a><a class="paginationElement" href="https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html?PAGE=20" data-page="20">20</a><a class="paginationElement" href="https://www.naturabuy.fr/Munitions-Balles-22LR-cat-884.html?PAGE=2" data-page="2">&gt;</a>
+
+
+
+
+
+html body div#contall div#body_container div#body_container_in div#PAGE div#Columns div#mainProduct div#productWrapper div#newinfos div h1#title.inbl.vmid
+<h1 class="inbl vmid" id="title">Balles RWS club - Cal. 22LR - 22LR / Par 1 / 40</h1>
