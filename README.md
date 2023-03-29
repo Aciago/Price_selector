@@ -9,3 +9,8 @@ Plan:
 1) Scrape data from various sources
 2) Collect data in one place, converting into a complete price breakdown (ammo itself, shipping, discounts, etc).
 3) Return a result in a form of specific offer to buy from (shop, link, ammo, price, etc)
+
+ideas to implement:
+- total cost column (price + delivery)
+- cost per round\shot (divide total cost by number of rounds in a box)
+- try to get proper name of Manufacturer AND product name (e.g. CCi Standard Velocity or CCi Blazer)
